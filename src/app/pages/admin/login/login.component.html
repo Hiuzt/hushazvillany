@@ -1,0 +1,22 @@
+<div class="w-screen bg-[#111827] h-screen flex font-[Barlow-Medium]">
+    <div class="left-side w-1/2 h-full flex items-center justify-center">
+        <img src="assets/images/logo.png" alt="">
+    </div>
+    <div class="flex w-1/2 justify-center items-center">
+        <form (ngSubmit)="loginUser()"  class="flex flex-col w-2/5 gap-6">
+
+            <div class="flex flex-col gap-2">
+                <label for="email" class="text-white">E-Mail cím</label>
+                <input id="email" name="userEmail" [(ngModel)]="loginData.username" required class="w-full bg-inherit outline-none px-2 border py-2  border-[rgb(215_215_215)] text-white rounded-[5px] focus:border-[#C42329] transition-all duration-200" type="text" placeholder="E-Mail cím">          
+            </div>
+            <div class="flex flex-col gap-2">
+                <label for="email" class="text-white">Jelszó</label>
+                <input type="password" name="userPassword" [(ngModel)]="loginData.password" placeholder="Jelszó" required class="w-full bg-inherit outline-none px-2 border py-2 border-[rgb(215_215_215)] text-white rounded-[5px] focus:border-[#C42329] transition-all duration-200">
+            </div>
+               
+            <input  type="submit" value="Bejelentkezés" class="bg-[#C42329] text-white font-[Barlow-Medium] text-xl py-2 rounded-lg mt-6 hover:cursor-pointer hover:shadow-[0px_0px_20px_0px_#C42329]" />
+        </form>
+    </div>
+</div>
+
+

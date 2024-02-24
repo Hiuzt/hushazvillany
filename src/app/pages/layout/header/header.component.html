@@ -1,0 +1,19 @@
+<div class="w-screen fixed left-0 top-0 z-[10000] bg-black/30">
+    <div class="mx-auto flex items-center justify-between w-3/4 py-2">
+        <div class="flex">
+            <img class="h-14" src = "assets/images/logo.png" alt="" />
+            <div class="flex flex-col items-center justify-center text-white text-lg ml-2">
+                <span class="uppercase bg-gradient-to-r from-[#C42329] to-white bg-clip-text text-transparent font-[Barlow-bold]">Húsház</span>
+                <span class="uppercase bg-gradient-to-r from-[#FFFFFF] to-[#C42329] bg-clip-text text-transparent font-[Barlow-bold]">Villány</span>
+            </div>
+        </div>
+            
+        <ul class="flex gap-8 text-lg uppercase">
+            <a routerLink="{{item[1]}}" routerLinkActive="active" acti class="text-white font-[Akko] group transition duration-300 relative" *ngFor="let item of menus">
+                <div class="absolute content-[''] w-full left-0 bottom-0 h-[2px] bg-[#C42329] transform origin-right group-hover:scale-[100%] transition-transform duration-500 group-hover:origin-left" [ngClass]="{'scale-[100%]': route === item[1], 'scale-x-[0]': route != item[1]}"></div>
+                {{ item[0] }}
+            </a>
+        </ul>
+    </div>
+</div> 
+<router-outlet/>

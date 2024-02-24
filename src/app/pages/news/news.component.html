@@ -1,0 +1,22 @@
+<div class="flex items-center justify-center pt-28">
+    <h1 class="text-[#8e7652] font-[Akko] uppercase text-4xl relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:bg-[#8e7652] after:h-[2px] after:w-full">
+        Híreink
+    </h1>
+</div>
+
+<div class="grid grid-cols-2 mt-8 gap-6 w-2/3 mx-auto">
+    <div *ngFor="let newsValue of newsList" class="flex flex-col bg-black/10 rounded-[20px] mx-auto font-[Akko-light] text-white border border-white/10 relative">
+        <div *ngIf="newsValue[2] === 0" class="absolute left-0 top-0 bg-black/10 backdrop-blur-sm w-full h-full rounded-[20px] flex items-center justify-center">
+            <div class="text-red-500 text-3xl font-[Akko] text-shadow">Lejárt hirdetés</div>
+        </div>
+        <div class="w-full flex items-center justify-center">
+            <img class="w-full aspect-video rounded-t-[20px]" [src]="'assets/images/' + newsValue[1]" alt="" />
+        </div>
+        <div class="p-4">
+            {{ newsValue[3] }}
+        </div>
+        <div class="ml-auto mr-4 mb-2 text-white/40">
+            2024. 02. 24. 0:47
+        </div>
+    </div>
+</div>

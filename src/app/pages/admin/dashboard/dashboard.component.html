@@ -1,0 +1,12 @@
+<div class="flex flex-col w-full p-4 mt-14 lg:mt-0">
+    <apx-chart class="p-4 bg-black/20 border border-white/10 rounded-lg" [series]="chartOptions.series" [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis">
+    </apx-chart>
+
+    <ul class="grid xl:grid-cols-5 lg:grid-cols-2 w-full gap-4 mt-4">
+        <li *ngFor="let data of dataValues " class="bg-black/20 border border-white/10 flex flex-col items-center justify-center py-4 rounded-lg lg:last:col-span-2 xl:last:col-span-1">
+            <span class="text-white font-[Barlow-medium] text-lg"> {{ data[0] }}</span>
+            <span class="text-white font-[Barlow-bold] text-5xl" [countUp]="data[1] || 0" [options]="countUpOptions">0</span>
+        </li>
+    </ul>
+</div>

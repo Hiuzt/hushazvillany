@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  overflow-y: scroll;
+}
+
+@font-face {
+    font-family: "Barlow-medium";
+    src: url('assets/fonts/Barlow-Medium.ttf');
+}
+
+@font-face {
+    font-family: "Barlow-bold";
+    src: url('assets/fonts/Barlow-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Akko";
+    src: url('assets/fonts/Akko.ttf');
+}
+
+@font-face {
+  font-family: "Akko-light";
+  src: url('assets/fonts/Akko-light.ttf');
+}
+
+
+@font-face {
+    font-family: "Desc";
+    src: url('assets/fonts/PlayfairDisplay-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Allura";
+    src: url('assets/fonts/Allura-Regular.ttf');
+}
+
+
+body {
+    background-color: #252525;
+    
+    /* background-image: url("assets/images/bg.jpg"); */
+}
+
+/* ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */

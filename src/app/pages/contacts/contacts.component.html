@@ -1,0 +1,62 @@
+<div class="flex items-center justify-center pt-28">
+    <h1 class="text-[#8e7652] font-[Akko] uppercase text-4xl relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:bg-[#8e7652] after:h-[2px] after:w-full">Elérhetőség</h1>
+</div>
+
+<div class="w-1/2 mx-auto mt-4 overflow-hidden rounded-[20px]">
+    <google-map tabindex="0"
+        [center]="center"
+        width="full"
+        [zoom]="zoom"
+        [options]="options"
+        >
+        <map-marker [icon] = "icon" [position]="mapMarker" [options]="markerOptions" />
+    </google-map>
+       
+
+</div>
+
+
+
+<div class="w-1/2 mx-auto flex justify-between items-center">
+    <div class=" flex flex-col justify-center gap-4 mt-8 font-[Akko]">
+        <div *ngFor="let contactData of infoElements" class="flex items-center">
+            <img [src]="['/assets/images/icons/' + contactData[0]]" alt="" class="bg-black/20 p-4 rounded-full shadow-lg" />
+            <span class="ml-4 text-white text-center">{{ contactData[1] }} </span>
+        </div>
+    </div>
+    <div class="flex flex-col justify-right">
+        <h1 class="text-[#8e7652] font-[Akko] uppercase text-2xl relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:bg-[#8e7652] after:h-[2px] after:w-full">Nyitvatartásunk</h1>
+        <div class="flex flex-col text-right">
+            <span class="flex text-white font-[Akko]">
+                <p class="mr-auto">Hétfő</p>
+                <p>Zárva</p>
+            </span>
+            <span class="flex text-white font-[Akko]">
+                <p class="mr-auto">Kedd</p>
+                <p>7:30-16:00</p>
+            </span>
+            <span class="flex text-white font-[Akko]">
+                <p class="mr-auto">Szerda</p>
+                <p>7:30-16:00</p>
+            </span>
+            <span class="flex text-white font-[Akko]">
+                <p class="mr-auto">Csütörtök</p>
+                <p>7:30-16:00</p>
+            </span>
+            <span class="flex text-white font-[Akko]">
+                <p class="mr-auto">Péntek</p>
+                <p>7:30-16:00</p>
+            </span>
+            <span class="flex text-white font-[Akko]">
+                <p class="mr-auto">Szombat</p>
+                <p>7:30-11:00</p>
+            </span>
+            <span class="flex text-white font-[Akko]">
+                <p class="mr-auto">Vasárnap</p>
+                <p>Zárva</p>
+            </span>
+        </div>
+    </div>
+</div>
+
+    

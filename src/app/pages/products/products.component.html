@@ -1,0 +1,44 @@
+<section id="products">
+    <div class="flex items-center justify-center pt-28">
+        <h1 class="text-[#8e7652] font-[Akko] uppercase text-4xl relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:bg-[#8e7652] after:h-[2px] after:w-full">Termékeink</h1>
+    </div>  
+    <div class="flex justify-between w-2/3 mx-auto mt-8 font-[Akko]">
+        <div class="flex gap-4">
+            <a [routerLink]="['/products']" [queryParams]="{category: categoryData[1], page: 1 }" *ngFor="let categoryData of categoriesList" class="flex flex-col rounded-full items-center justify-center  cursor-pointer duration-150">
+                <img class="border p-4  rounded-full hover:opacity-100" [ngClass]="{'bg-[#8e7652] opacity-100 border-[#8e7652]': currentCategory === categoryData[1], 'bg-transparent opacity-50 border-white': currentCategory != categoryData[1]}" [src] = "'/assets/images/categories/' + [categoryData[1]] + '.png'" alt=""/>   
+                <span class="text-white mt-2">{{ categoryData[0] }}</span>
+
+            </a>
+        </div>
+        <div class="flex flex-col items-center justify-center ">
+            <a [routerLink]="['/products']" [queryParams]="{category: 'all', page: 1 }"  [ngClass]="{'bg-[#8e7652] opacity-100 border-[#8e7652]': currentCategory === 'all', 'bg-transparent opacity-50 border-white': currentCategory != 'all'}" class="w-16 border rounded-full items-center justify-center">
+                <img class="p-4 aspect-square w-52" src="/assets/images/categories/all.png" alt=""/>              
+            </a>  
+            <span class="text-white mt-2">Összes termék</span>      
+        </div>
+            
+    </div>
+    <div class="grid grid-cols-4 p-14 w-3/4 mx-auto gap-4 mt-4">
+        <div *ngFor="let productValue of filteredProductList" class="flex flex-col items-center justify-center relative overflow-hidden pb-10 ">
+            <div class="relative group">
+                <img [src]="productValue.imagePath" class="rounded-[20px] aspect-square group-hover:p-1" alt="" />
+                <div class="h-0 flex items-center text-center justify-center absolute bg-black/80 backdrop-blur-lg left-0 top-0 transition-all rounded-[20px] group-hover:duration-300 w-full group-hover:h-full overflow-hidden z-10">
+                    <span class="m-8 text-white font-[Desc] font-light tracking-wide">
+                        {{ productValue["description"] }}
+                    </span>
+                </div>
+            </div>
+                
+            <div class="absolute top-4 bg-red-600 px-10 rotate-45 right-[-30px] text-white" [ngClass]="{'hidden': productValue['discount'] <= 0, 'block': productValue['discount'] > 0}">
+                {{ productValue["discount"]}}%
+            </div>
+            <span class="font-[Desc] text-white uppercase mt-2 font-normal tracking-[0.2em]">{{ productValue["name"] }}</span>
+            <span class="font-[Akko] w-full text-center text-gray-200 tracking-[0.1em] relative" [ngClass]="{'line-through': productValue['discount'] > 0, 'text-gray-500': productValue['discount'] > 0}">
+                {{ productValue["price"]}} Ft
+            </span>
+            <span class="absolute bottom-5 font-[Akko] tracking-[0.1em] text-white" [ngClass]="{'hidden': productValue['discount'] <= 0}">
+                {{ productValue["price"] - (productValue["price"] * (productValue["discount"]/100))}} Ft
+            </span>
+        </div>
+    </div>
+</section> 

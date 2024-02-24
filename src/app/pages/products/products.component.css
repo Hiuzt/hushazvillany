@@ -1,0 +1,8 @@
+#products {
+    background-image: url("/assets/images/bg.jpg");
+    background-size: cover;
+    background-position: center; /* Adjust to your needs */
+    background-attachment: fixed; /* This makes the background fixed */
+    min-height: 100vh;
+}
+
