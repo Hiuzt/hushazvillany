@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
         ["Összegzés", "assets/images/icons/summary.svg", "admin/dashboard"],
         ["Termékek", "assets/images/icons/products.svg", "admin/products"],
         ["Felhasználók", "assets/images/icons/users.svg", "admin/users"],
-        ["Képek", "assets/images/icons/users.svg"]
+        ["Hirdetések", "assets/images/icons/news.svg"]
     ]
 
     userLogout() {

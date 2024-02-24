@@ -1,6 +1,6 @@
 
 <div class="flex w-full">
-    <div class="relative min-w-fit hidden lg:flex">
+    <div class="relative min-w-fit hidden lg:flex  font-[Akko]">
         <aside class="font-[Akko] flex flex-col h-screen relative justify-between bg-black/20 min-w-fit">
             <div>
                 <div class="py-4 border-b border-white/10 inline-flex items-center">
@@ -25,7 +25,7 @@
         </aside>
     </div>
     <!-- MOBILE -->
-    <div class="relative mt-0 lg:hidden">
+    <div class="relative mt-0 lg:hidden  font-[Akko]">
         <nav class="w-full flex items-center justify-between fixed left-0 top-0 bg-black/60 z-[100] px-6 py-2">
             <img class="h-12" src="/assets/images/logo.png" alt="" />
             <div (click)="showMobileNavBar=!showMobileNavBar" class="w-6 h-0.5 bg-white relative
@@ -35,7 +35,7 @@
             </div>
         </nav>
     </div>
-    <div [ngClass]="{'translate-x-full': showMobileNavBar === true}" class="lg:hidden min-w-fit flex flex-col justify-between fixed right-full top-0 bg-black/80 min-h-screen transition-all duration-300 z-[200]">
+    <div [ngClass]="{'translate-x-full': showMobileNavBar === true}" class="lg:hidden  font-[Akko] min-w-fit flex flex-col justify-between fixed right-full top-0 bg-black/80 min-h-screen transition-all duration-300 z-[200]">
         <div>
             <div class="py-4 border-b border-white/10 inline-flex items-center">
                 <div class=" w-16 mx-2">

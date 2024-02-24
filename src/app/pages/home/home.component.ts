@@ -8,7 +8,7 @@ import anime from 'animejs/lib/anime.es.js';
 })
 export class HomeComponent implements AfterViewInit {
     ngAfterViewInit(): void {
-        const classNames = ['.title', '.title2', '.title3'];
+        const classNames = ['.title', '.title2'];
         classNames.forEach((className, index) => {
             const textWrapper = document.querySelector(className);
             if (textWrapper !== null && textWrapper.textContent !== null) {
@@ -28,5 +28,16 @@ export class HomeComponent implements AfterViewInit {
             }
         });
 
+        const productButton = document.querySelector(".productView")
+
+        setTimeout(() => {
+            anime.timeline({ loop: false })
+                .add({
+                    targets: `.product-button`,
+                    opacity: [0, 100],
+                    easing: "easeOutExpo",
+                    duration: 1000,
+                });
+        }, 2000)
     }
 }
