@@ -23,6 +23,7 @@ import { AdminProductsComponent } from './pages/admin/admin-products/admin-produ
 import { NgToastModule } from 'ng-angular-popup';
 import { UsersComponent } from './pages/admin/users/users.component';
 import { NewsComponent } from './pages/news/news.component';
+import { AdminMessagesComponent } from './pages/admin/admin-messages/admin-messages.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { NewsComponent } from './pages/news/news.component';
         SidebarComponent,
         AdminProductsComponent,
         UsersComponent,
-        NewsComponent
+        NewsComponent,
+        AdminMessagesComponent
         
     ],
     imports: [

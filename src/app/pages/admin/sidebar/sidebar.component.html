@@ -11,9 +11,12 @@
                     </div>
                 </div>
                 <ul class="my-2">
-                    <a [routerLink]="menuValues[2]" routerLinkActive="true" class="flex items-center gap-2 mx-4 rounded-lg px-2 py-2 text-[#c8c8c8] group hover:bg-white/10 hover:text-white duration-150" *ngFor="let menuValues of sidebarMenus">
+                    <a [routerLink]="menuValues[2]" routerLinkActive="true" class="relative flex items-center gap-2 mx-4 rounded-lg px-2 py-2 text-[#c8c8c8] group hover:bg-white/10 hover:text-white duration-150" *ngFor="let menuValues of sidebarMenus">
                         <img class="w-5" [src]="menuValues[1]" alt="" />
-                        <span class="font-medium ml-2"> {{ menuValues[0] }} </span>                  
+                        <span class="font-medium ml-2"> {{ menuValues[0] }} </span> 
+                        <div *ngIf="menuValues[3] > 0 && (newMessage) > 0">
+                            <span class="text-xs text-white absolute left-5 top-1 bg-red-500 rounded-full py-[2px] flex px-1 items-center justify-center h-4">{{ newMessage }}</span>
+                        </div>                 
                     </a>
                 </ul>
             </div>

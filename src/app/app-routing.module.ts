@@ -12,6 +12,7 @@ import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { AdminProductsComponent } from './pages/admin/admin-products/admin-products.component';
 import { UsersComponent } from './pages/admin/users/users.component';
 import { NewsComponent } from './pages/news/news.component';
+import { AdminMessagesComponent } from './pages/admin/admin-messages/admin-messages.component';
 
 const routes: Routes = [
     {path: "", component: HeaderComponent, children: [
@@ -25,7 +26,8 @@ const routes: Routes = [
     {path: "", component: SidebarComponent, children: [
         {path: "admin/dashboard", component: DashboardComponent, canActivate:[authGuard]},
         {path: "admin/products", component: AdminProductsComponent, canActivate:[authGuard]},
-        {path: "admin/users", component: UsersComponent, canActivate:[authGuard]}
+        {path: "admin/users", component: UsersComponent, canActivate:[authGuard]},
+        {path: "admin/messages", component: AdminMessagesComponent, canActivate:[authGuard]},
     ]}
         
 ];

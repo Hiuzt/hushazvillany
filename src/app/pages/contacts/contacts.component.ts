@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { dark } from '../../utils/google.maps.style';
+import { MessageService } from '../../services/message.service';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -25,8 +27,7 @@ export class ContactsComponent implements AfterViewInit {
 
     display: any;
     center: google.maps.LatLngLiteral = {
-        lat: 45.869410,
-        lng: 18.456140
+        lat: 45.869397872174225, lng: 18.455722901219165
     };
     zoom = 16;
 
@@ -50,10 +51,25 @@ export class ContactsComponent implements AfterViewInit {
     }
     
 
-    constructor() {}
+    constructor(private messageService: MessageService, private toast: NgToastService) {}
         
     ngAfterViewInit(): void {
         this.map.googleMap?.setOptions({styles: dark})
+    }
+
+
+    messageInput = {
+        "name": "",
+        "email": "",
+        "messageContent": ""
+    }
+
+    sendMessage(): void {
+        this.messageService.insertMessage(this.messageInput).subscribe((data) => {
+            if (data.success === true) {
+                this.toast.success({detail: "Siker", summary: "Sikeresen elküldted az üzenetet, várj míg válaszolnak rá!"})
+            }
+        })
     }
     
 }
