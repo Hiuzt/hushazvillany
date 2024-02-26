@@ -10,6 +10,7 @@ export class AdminMessagesComponent implements OnInit {
     messageList: any = []
     showResponseModal: boolean = false;
     currentResponseID = -1
+    replyContent: string = ""
 
     constructor(private message: MessageService) {}
 
@@ -17,6 +18,22 @@ export class AdminMessagesComponent implements OnInit {
         this.message.getAllMessage().subscribe((data) => {
             this.messageList = data
         })
+    }
+
+    replyMessage() {
+        if (this.replyContent !== "") {
+            const currentID = this.messageList[this.currentResponseID]["id"]
+            let currentImageSource = this.messageList[this.currentResponseID]
+            currentImageSource["replyContent"] = this.replyContent
+
+            this.message.replyMessage(currentID, currentImageSource).subscribe((data) => {
+                if (data.success === true) {
+                    this.messageList[this.currentResponseID]["isReplied"] = true
+                    this.messageList[this.currentResponseID]["replyContent"] = this.replyContent
+                    this.message.getAllMessage(true)
+                }
+            })        
+        }
     }
 
     get unreadMessages() {

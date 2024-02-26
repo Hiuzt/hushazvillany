@@ -14,15 +14,25 @@ export class MessageService {
         return this.http.post<any>('https://localhost:7228/api/Message/', messageForm, { withCredentials: true });
     }
 
-    getAllMessage(): Observable<any> {
+    getAllMessage(forceGet: boolean = false): Observable<any> {
         if (this.cachedData) {
             return of(this.cachedData)
-        } else {
+        } else if (forceGet === true || !this.cachedData) {
             return this.http.get<any>('https://localhost:7228/api/Message/', {withCredentials: true}).pipe(
                 tap(data => {
                     this.cachedData = data;
                 })
             )
+        } else {
+            return this.http.get<any>('https://localhost:7228/api/Message/', {withCredentials: true}).pipe(
+                tap(data => {
+                    this.cachedData = data;
+                })
+            )           
         }
+    }
+
+    replyMessage(messageID: number, messageForm: any): Observable<any> {
+        return this.http.put<any>(`https://localhost:7228/api/Message/${messageID}`, messageForm, { withCredentials: true });
     }
 }

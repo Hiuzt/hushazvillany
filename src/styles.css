@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  overflow-y: scroll;
+body {
+  overflow: auto;
 }
-
 @font-face {
     font-family: "Barlow-medium";
     src: url('assets/fonts/Barlow-Medium.ttf');
