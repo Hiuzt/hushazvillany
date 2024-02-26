@@ -11,7 +11,7 @@ export class AuthService {
     constructor(private http: HttpClient, private token: TokenService) { }
 
     login(username: string, password: string): Observable<any> {
-        return this.http.post<any>(`${environment.apiUrl}/api/User/Login`, { username, password }, {withCredentials: true});
+        return this.http.post<any>(`http://34.41.92.132:5000/api/User/Login`, { username, password }, {withCredentials: true});
     }
 
     isLoggedIn(): boolean {
