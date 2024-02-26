@@ -10,7 +10,7 @@ export class ProductService {
     constructor(private http: HttpClient) { }
 
     getAllProducts(): Observable<any> {
-        return this.http.get<any>('https://localhost:7228/api/Product/', { withCredentials: true });
+        return this.http.get<any>('hhttp://34.41.92.132:5000/api/Product/', { withCredentials: true });
     }
 
     addNewProduct(productForm: any): Observable<any> {
@@ -22,6 +22,6 @@ export class ProductService {
     }
 
     updateProduct(productID: number, productForm: any): Observable<any> {
-        return this.http.put<any>(`https://localhost:7228/api/Product/${productID}`, productForm, {withCredentials: true})
+        return this.http.put<any>(`http://34.41.92.132:5000/api/Product/${productID}`, productForm, {withCredentials: true})
     }
 }
