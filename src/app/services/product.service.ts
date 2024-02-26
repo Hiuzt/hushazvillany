@@ -10,8 +10,8 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    async getAllProducts(): Promise<Observable<any>> {
-        return await this.http.get<any>(`${environment.apiUrl}/api/Product/`, { withCredentials: true });
+    getAllProducts(): Observable<any> {
+        return this.http.get<any>(`${environment.apiUrl}/api/Product/`, { withCredentials: true });
     }
 
     addNewProduct(productForm: any): Observable<any> {
