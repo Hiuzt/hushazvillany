@@ -35,6 +35,13 @@ export class ProductsComponent {
 
     constructor(private router: Router, private route: ActivatedRoute, private product: ProductService) { }
 
+    fetchData() {
+        this.product.getAllProducts().subscribe((data: any) => {
+            this.productList = data; 
+            this.filteredProductList = this.productList;       
+        })    
+    }
+
 
 
     ngOnInit(): void {
@@ -62,14 +69,6 @@ export class ProductsComponent {
     }
 
 
-    fetchData() {
-        this.product.getAllProducts().subscribe((data: any) => {
-            this.productList = data; 
-            this.filteredProductList = this.productList;       
-        })
-
-        
-    }
 
     changeCategory(categoryName: any) {
         if (categoryName) {
