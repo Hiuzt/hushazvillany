@@ -11,7 +11,7 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     getAllUsers(): Observable<any> {
-        return this.http.get<any>(`${environment.apiUrl}/api/User`, { withCredentials: true });
+        return this.http.get<any>(`${environment.apiUrl}/api/User/`, { withCredentials: true });
     }
 
     deleteUser(userID: number): Observable<any> {
