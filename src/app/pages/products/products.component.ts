@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, retry } from 'rxjs';
 import { ProductService } from '../../services/product.service';
 
 interface QueryParams {
@@ -37,10 +37,9 @@ export class ProductsComponent {
 
     fetchData() {
         this.product.getAllProducts().subscribe((data: any) => {
+            retry(3)
             this.productList = data; 
             this.filteredProductList = this.productList;       
-        }, error => {
-            console.log(error)
         })    
     }
 
