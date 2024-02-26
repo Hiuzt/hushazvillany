@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { ProductService } from '../../services/product.service';
 
 interface QueryParams {
     category: string;
@@ -32,7 +33,7 @@ export class ProductsComponent {
     currentCategory!: string;
     currentPage: number = 1
 
-    constructor(private router: Router, private route: ActivatedRoute) { }
+    constructor(private router: Router, private route: ActivatedRoute, private product: ProductService) { }
 
 
 
@@ -62,7 +63,7 @@ export class ProductsComponent {
 
 
     fetchData() {
-        this.httpClient.get("https://localhost:7228/api/Product/").subscribe((data: any) => {
+        this.product.getAllProducts().subscribe((data: any) => {
             this.productList = data; 
             this.filteredProductList = this.productList;       
         })
