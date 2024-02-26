@@ -39,10 +39,10 @@ export class ProductsComponent {
         this.product.getAllProducts().subscribe((data: any) => {
             this.productList = data; 
             this.filteredProductList = this.productList;       
+        }, error => {
+            console.log(error)
         })    
     }
-
-
 
     ngOnInit(): void {
         this.fetchData();
