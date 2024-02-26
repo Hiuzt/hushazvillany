@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, retry } from 'rxjs';
 import { ProductService } from '../../services/product.service';
@@ -15,7 +15,7 @@ interface QueryParams {
 })
 
 
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
 
     categoriesList: any[][] = [
         ["Halak", "fish",],
