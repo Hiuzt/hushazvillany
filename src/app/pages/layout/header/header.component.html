@@ -28,10 +28,10 @@
         </div>
             </div>
                 
-            <div [ngClass]="{'translate-x-full': showMobileNavBar === true}" class="lg:hidden w-auto pr-10 font-[Akko] backdrop-blur-lg flex flex-col justify-between fixed right-full top-0 bg-black/80 min-h-screen transition-all duration-300 z-[200]">
+            <div [ngClass]="{'translate-x-full': showMobileNavBar === true}" class="lg:hidden w-auto font-[Akko] backdrop-blur-lg flex flex-col justify-between fixed right-full top-0 bg-black/80 min-h-screen transition-all duration-300 z-[200]">
                 <div>
                     <ul class="my-2">
-                        <a (click)="showMobileNavBar = false" [routerLink]="menuValues[1]" routerLinkActive="true" class=" relative flex items-center gap-2 mx-4 rounded-lg px-2 py-2 text-[#c8c8c8] group hover:bg-white/10 hover:text-white duration-150" *ngFor="let menuValues of menus">
+                        <a (click)="showMobileNavBar = false" [routerLink]="menuValues[1]" routerLinkActive="true" class=" relative flex items-center gap-2 mx-4 rounded-lg px-2 py-2 text-[#c8c8c8] pr-10  group hover:bg-white/10 hover:text-white duration-150" *ngFor="let menuValues of menus">
                             <img class="w-5" [src]="['/assets/images/icons/' + menuValues[2 ]]" alt="" />
                             <span class="font-medium ml-2"> {{ menuValues[0] }} </span>    
               
