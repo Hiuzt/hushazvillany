@@ -14,17 +14,18 @@ export class LoginComponent {
     
 
     loginData: any = {
-        username: "",
+        email: "",
         password: ""
     }
 
     constructor (private authService: AuthService, private router: Router, private token: TokenService, private toast: NgToastService) {}
 
     loginUser() {
-        this.authService.login(this.loginData.username, this.loginData.password).subscribe((res: any) => {
-            if (res.success) {
-                this.toast.success({detail: "SUCCESS", summary: "Sikeresen bejelentkeztél!"});
-                this.token.storeToken(res.data.token)
+        this.authService.login(this.loginData.email, this.loginData.password).subscribe((data: any) => {
+            console.log(data)
+            if (data.success) {
+                this.toast.success({detail: "SUCCESS", summary: "Sikeresen bejelentkeztél!"});    
+                this.token.storeToken(data.token)
                 this.router.navigateByUrl("/admin/dashboard")
             }
         })

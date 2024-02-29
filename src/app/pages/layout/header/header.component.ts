@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
     route: any;
+    showMobileNavBar: boolean = false;
     menus: string[][] = [
-        ["Főoldal", "/"],
+        ["Főoldal", "/", "home.svg"],
         // ["Rólunk", "/about"],
-        ["Híreink", "/news"],
-        ["Termékeink", "/products"],
-        ["Elérhetőségünk", "/contacts"]
+        ["Híreink", "/news", "news.svg"],
+        ["Termékeink", "/products", "products.svg"],
+        ["Elérhetőségünk", "/contacts", "contacts.svg"]
     ];
 
     constructor(private router: Router) {}

@@ -16,7 +16,7 @@ export class AdminMessagesComponent implements OnInit {
 
     ngOnInit(): void {
         this.message.getAllMessage().subscribe((data) => {
-            this.messageList = data
+            this.messageList = data.messages
         })
     }
 
@@ -24,12 +24,12 @@ export class AdminMessagesComponent implements OnInit {
         if (this.replyContent !== "") {
             const currentID = this.messageList[this.currentResponseID]["id"]
             let currentImageSource = this.messageList[this.currentResponseID]
-            currentImageSource["replyContent"] = this.replyContent
+            currentImageSource["reply_content"] = this.replyContent
 
             this.message.replyMessage(currentID, currentImageSource).subscribe((data) => {
                 if (data.success === true) {
-                    this.messageList[this.currentResponseID]["isReplied"] = true
-                    this.messageList[this.currentResponseID]["replyContent"] = this.replyContent
+                    this.messageList[this.currentResponseID]["is_replied"] = true
+                    this.messageList[this.currentResponseID]["reply_content"] = this.replyContent
                     this.message.getAllMessage(true)
                 }
             })        
@@ -38,7 +38,7 @@ export class AdminMessagesComponent implements OnInit {
 
     get unreadMessages() {
         return this.messageList.filter((data: any) => {
-            return data["isReplied"] === false
+            return data["is_replied"] === false
         })
     }
 

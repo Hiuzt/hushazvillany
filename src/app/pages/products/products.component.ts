@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, retry } from 'rxjs';
+import { filter } from 'rxjs';
 import { ProductService } from '../../services/product.service';
 
 interface QueryParams {
@@ -15,16 +15,15 @@ interface QueryParams {
 })
 
 
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
     categoriesList: any[][] = [
-        ["Halak", "fish",],
         ["Marha", "cow"],
         ["Csirke", "chicken"],
         ["Kolbász", "sausage"],
         ["Bárány", "sheep"],
         ["Sertés", "pig"],
-        ["Akciók", "discount"]
+        ["Akciók", "discount"],
     ]
 
     httpClient = inject(HttpClient);
@@ -35,13 +34,7 @@ export class ProductsComponent implements OnInit {
 
     constructor(private router: Router, private route: ActivatedRoute, private product: ProductService) { }
 
-    fetchData() {
-        this.product.getAllProducts().subscribe((data: any) => {
-            retry(3)
-            this.productList = data; 
-            this.filteredProductList = this.productList;       
-        })    
-    }
+
 
     ngOnInit(): void {
         this.fetchData();
@@ -68,6 +61,14 @@ export class ProductsComponent implements OnInit {
     }
 
 
+    fetchData() {
+        this.product.getAllProducts().subscribe((data: any) => {
+            this.productList = data.products; 
+            this.filteredProductList = this.productList;       
+        })
+
+    
+    }
 
     changeCategory(categoryName: any) {
         if (categoryName) {

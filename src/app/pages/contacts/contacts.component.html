@@ -1,5 +1,5 @@
-<div class="w-1/2 mx-auto flex flex-col justify-between items-center pt-28">
-    <div class="flex w-full items-center gap-12">
+<div class="w-4/5 lg:w-2/3 mx-auto flex flex-col justify-between items-center pt-28">
+    <div class="grid grid-cols-1 sm:grid-cols-2 w-full items-center gap-12">
         <div class="w-full">
             <div class="flex items-center justify-center mb-8">
                 <h1
@@ -24,7 +24,7 @@
                         class="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#C42329] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Teljes név</label>
                 </div>
                 <div class="relative z-0 mb-6 w-full group col-span-2">
-                    <textarea [(ngModel)] = "messageInput.messageContent" type="email" name="email"
+                    <textarea [(ngModel)] = "messageInput.message_content" type="email" name="email"
                         class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2  appearance-none text-white border-white focus:border-[#C42329] focus:outline-none focus:ring-0 peer"
                         placeholder=" " required></textarea>
                     <label for="email"
@@ -42,7 +42,7 @@
                     class="text-[#fff] font-[Akko] uppercase text-2xl relative after:absolute after:content-[''] after:left-0 after:bottom-0 after:bg-[#C42329] after:h-[2px] after:w-full">
                     Nyitva tartásunk</h1>
             </div>
-            <div class="flex flex-col text-right gap-2">
+            <div class="sm:text-base text-sm flex flex-col text-right gap-2">
                 <span class="flex text-white font-[Akko]">
                     <p class="mr-auto">Hétfő</p>
                     <p>Zárva</p>
@@ -87,10 +87,10 @@
             </google-map>
         </div>      
     </div>
-    <div class="flex justify-center gap-4 mt-8 font-[Akko]">
+    <div class="flex 2xl:flex-row text-sm md:text-lg flex-col justify-center mr-auto 2xl:mx-auto gap-4 mt-8 font-[Akko] mb-4">
         <div *ngFor="let contactData of infoElements" class="flex items-center">
             <img [src]="['/assets/images/icons/' + contactData[0]]" alt=""
-                class="bg-black/20 p-4 rounded-full shadow-lg" />
+                class="bg-black/20 p-3 lg:p-4 w-12 lg:w-auto rounded-full shadow-lg" />
             <span class="ml-4 text-white text-center">{{ contactData[1] }} </span>
         </div>
     </div>

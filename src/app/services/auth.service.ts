@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +10,8 @@ import { environment } from '../../environments/environment';
 export class AuthService {
     constructor(private http: HttpClient, private token: TokenService) { }
 
-    login(username: string, password: string): Observable<any> {
-        return this.http.post<any>(`http://34.41.92.132:5000/api/User/Login`, { username, password }, {withCredentials: true});
+    login(email: string, password: string): Observable<any> {
+        return this.http.post<any>(`${environment.apiUrl}/auth/login`, { email, password }, {withCredentials: true});
     }
 
     isLoggedIn(): boolean {
@@ -19,7 +19,7 @@ export class AuthService {
     }
 
     async getServerToken(): Promise<boolean> {
-        this.http.get<any>(`${environment.apiUrl}api/User/loggedIn`, {withCredentials: true}).subscribe((e) => {
+        this.http.get<any>(`${environment.apiUrl}/auth/loggedIn`, {withCredentials: true}).subscribe((e) => {
             return e.data.loggedIn;
         })
 

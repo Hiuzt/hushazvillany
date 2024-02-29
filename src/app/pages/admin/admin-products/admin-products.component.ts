@@ -18,7 +18,7 @@ export class AdminProductsComponent implements OnInit {
     @Input() currentPage: any = 1;
     @Input() pagesList: any;
     uploadedImage: any = null;
-    currentActionIndex: number = 0;
+    currentActionIndex: string = "";
     currentCategory: string = "all";
 
     productList: any[] = [];
@@ -53,12 +53,12 @@ export class AdminProductsComponent implements OnInit {
 
     addNewProduct() {
         const formData = new FormData();
-        formData.append("Name", this.productInputs.productName);   
-        formData.append("Price", this.productInputs.productPrice);   
-        formData.append("Discount", this.productInputs.productDiscount);  
-        formData.append("Description", this.productInputs.productDescription);  
-        formData.append("ImageFile", this.productInputs.productImage);
-        formData.append("Category", this.productInputs.productCategory);   
+        formData.append("name", this.productInputs.productName);   
+        formData.append("price", this.productInputs.productPrice);   
+        formData.append("discount", this.productInputs.productDiscount);  
+        formData.append("description", this.productInputs.productDescription);  
+        formData.append("image", this.productInputs.productImage);
+        formData.append("category", this.productInputs.productCategory);   
 
     
         this.productService.addNewProduct(formData).subscribe((data) => {
@@ -79,21 +79,21 @@ export class AdminProductsComponent implements OnInit {
     }
 
     editProduct() {
-        if (this.currentActionIndex > 0) {
-
+        if (this.currentActionIndex !== "") {
+            console.log(this.currentActionIndex)
             const formData = new FormData();
-            formData.append("Name", this.productInputs.productName);   
-            formData.append("Price", this.productInputs.productPrice);   
-            formData.append("Discount", this.productInputs.productDiscount);  
-            formData.append("Description", this.productInputs.productDescription);  
-            formData.append("ImageFile", this.productInputs.productImage);
-            formData.append("Category", this.productInputs.productCategory);   
+            formData.append("name", this.productInputs.productName);   
+            formData.append("price", this.productInputs.productPrice);   
+            formData.append("discount", this.productInputs.productDiscount);  
+            formData.append("description", this.productInputs.productDescription);  
+            formData.append("image", this.productInputs.productImage);
+            formData.append("category", this.productInputs.productCategory);   
 
             console.log(this.productInputs.productCategory)
 
             this.productService.updateProduct(this.currentActionIndex, formData).subscribe((data) => {
                 if (data.success === true) {
-                    this.toast.success({detail: "Siker", summary: data?.data?.message})
+                    this.toast.success({detail: "Siker", summary: data?.message})
                     this.fetchData();
                     this.showEditDialog = false;
                 }
@@ -102,10 +102,10 @@ export class AdminProductsComponent implements OnInit {
     }
 
     deleteProduct() {
-        if (this.currentActionIndex > 0) {
+        if (this.currentActionIndex !== "") {
             this.productService.deleteProduct(this.currentActionIndex).subscribe((data) => {
                 if (data.success === true) {
-                    this.toast.success({detail: "Siker", summary: data?.data?.message})
+                    this.toast.success({detail: "Siker", summary: data.message})
                     this.fetchData();
                     this.showDeleteDialog = false;
                 }
@@ -116,7 +116,7 @@ export class AdminProductsComponent implements OnInit {
     showEditProduct(indexValue: any) {
         this.currentActionIndex = indexValue
         var currentProduct = this.productList.filter((productValue) => {
-            return productValue["id"] === indexValue;
+            return productValue["_id"] === indexValue;
         })
         
         this.showEditDialog = true
@@ -203,8 +203,8 @@ export class AdminProductsComponent implements OnInit {
     }
 
     fetchData() {
-        this.httpClient.get("https://localhost:7228/api/Product/").subscribe((data: any) => {
-            this.productList = data;
+        this.productService.getAllProducts().subscribe((data: any) => {
+            this.productList = data.products;
             this.totalItems = Math.ceil(this.filteredList.length / this.itemsPerPage)
             this.pagesList = Array.from({ length: this.totalItems }, (_, i) => i + 1)
         })     

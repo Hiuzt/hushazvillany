@@ -17,7 +17,7 @@ export class ContactsComponent implements AfterViewInit {
     infoElements: any[] = [
         ["phone.png", "(72) 249-479"],
         ["mail.png", "hushazvillany@gmail.com"],
-        ["address.png", "Dózsa György utca 2., Villány, Magyarország"]
+        ["address.png", "Villány, Dózsa György utca 2."]
 
     ]
 
@@ -61,13 +61,13 @@ export class ContactsComponent implements AfterViewInit {
     messageInput = {
         "name": "",
         "email": "",
-        "messageContent": ""
+        "message_content": ""
     }
 
     sendMessage(): void {
         this.messageService.insertMessage(this.messageInput).subscribe((data) => {
             if (data.success === true) {
-                this.toast.success({detail: "Siker", summary: "Sikeresen elküldted az üzenetet, várj míg válaszolnak rá!"})
+                this.toast.success({detail: "Siker", summary: data.message})
             }
         })
     }

@@ -9,8 +9,9 @@ export const tokenInterceptor: HttpInterceptorFn = (req: any, next: any) => {
     let auth: AuthService
     let route: Router
     let modifiedReq: any
+    
     try {
-        const myToken = localStorage.getItem("token");
+        const myToken = localStorage.getItem("auth_token");
         if (myToken) {
             modifiedReq = req.clone({
                 setHeaders: { Authorization: `Bearer ${myToken}` }
@@ -21,7 +22,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req: any, next: any) => {
             catchError((err: any) => {
                 if (err instanceof HttpErrorResponse) {
                     if (err.status === 401) {
-                        alert("Nem vagy bejelentkezve")
                         route.navigate(['admin/login'])
                     }
                 }

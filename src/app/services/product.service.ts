@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
     providedIn: 'root'
@@ -11,18 +11,18 @@ export class ProductService {
     constructor(private http: HttpClient) { }
 
     getAllProducts(): Observable<any> {
-        return this.http.get<any>(`${environment.apiUrl}/api/Product/`, { withCredentials: true });
+        return this.http.get<any>(`${environment.apiUrl}/product`, { withCredentials: true });
     }
 
     addNewProduct(productForm: any): Observable<any> {
-        return this.http.post<any>(`${environment.apiUrl}/api/Product/`, productForm, {withCredentials: true})
+        return this.http.post<any>(`${environment.apiUrl}/product`, productForm, {withCredentials: true})
     }
 
-    deleteProduct(productID: number): Observable<any> {
-        return this.http.delete<any>(`${environment.apiUrl}/api/Product/${productID}`, {withCredentials: true})
+    deleteProduct(productID: string): Observable<any> {
+        return this.http.delete<any>(`${environment.apiUrl}/Product/${productID}`, {withCredentials: true})
     }
 
-    updateProduct(productID: number, productForm: any): Observable<any> {
-        return this.http.put<any>(`${environment.apiUrl}/api/Product/${productID}`, productForm, {withCredentials: true})
+    updateProduct(productID: string, productForm: any): Observable<any> {
+        return this.http.put<any>(`${environment.apiUrl}/Product/${productID}`, productForm, {withCredentials: true})
     }
 }

@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
     showDeleteDialog: boolean = false;
     showAddDialog: boolean = false;
     showEditDialog: boolean = false;
-    currentActionIndex: number = 1
+    currentActionIndex: string = ""
 
     usersList: any[] = [];
 
@@ -31,31 +31,33 @@ export class UsersComponent implements OnInit {
     }
 
     editUser() {
-        var passwordValue = ""
-        if (this.userInputs.userPassword.length > 0) {
-            passwordValue = this.userInputs.userPassword
-        }
-        const userForm = {
-            "name": this.userInputs.userFullName,
-            "email": this.userInputs.userEmail,
-            "password": passwordValue,
-            "username": this.userInputs.userName
-        }
+        if (this.currentActionIndex !== "") {
+            var passwordValue = ""
+            if (this.userInputs.userPassword.length > 0) {
+                passwordValue = this.userInputs.userPassword
+            }
+            const userData = {
+                "name": this.userInputs.userFullName,
+                "email": this.userInputs.userEmail,
+                "password": passwordValue,
+                "username": this.userInputs.userName
+            }
 
-        this.userService.updateUser(this.currentActionIndex, userForm).subscribe((data) => {
-            if (data.success === true) {
-                this.toast.success({detail: "Siker", summary: data.data.message})
-                this.showEditDialog = false;
-                this.fetchData();
-            } else {
-                this.toast.error({detail: "Hiba", summary: data.data.message})            }
-        })
+            this.userService.updateUser(this.currentActionIndex, userData).subscribe((data) => {
+                if (data.success === true) {
+                    this.toast.success({detail: "Siker", summary: data.message})
+                    this.showEditDialog = false;
+                    this.fetchData();
+                } else {
+                    this.toast.error({detail: "Hiba", summary: data.message})            }
+            })
+        }
     }
 
     showEditUser() {
-        if (this.currentActionIndex > 0) {
+        if (this.currentActionIndex !== "") {
             const userSource = this.usersList.filter((userValue) => {
-                return userValue.id === this.currentActionIndex;
+                return userValue._id === this.currentActionIndex;
             })[0]
             this.userInputs.userFullName = userSource["name"]
             this.userInputs.userEmail = userSource["email"]
@@ -85,7 +87,7 @@ export class UsersComponent implements OnInit {
     }
 
     deleteUser() {
-        if (this.currentActionIndex > 0) {
+        if (this.currentActionIndex !== "") {
             this.userService.deleteUser(this.currentActionIndex).subscribe((data) => {
                 if (data.success === true) {
                     this.toast.success({detail: "Siker", summary: data?.data?.message})
@@ -104,7 +106,7 @@ export class UsersComponent implements OnInit {
 
     fetchData() {
         this.userService.getAllUsers().subscribe((data: any) => {
-            this.usersList = data;
+            this.usersList = data.users;
         })
     }
 }
