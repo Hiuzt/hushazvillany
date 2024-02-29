@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: "https://hushazvillany-backend.onrender.com/api"
+    apiUrl: "https://hushazvillany-backend-new-1.onrender.com/api"
 };
