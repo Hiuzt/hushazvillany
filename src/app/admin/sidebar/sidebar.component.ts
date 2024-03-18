@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenService } from '../../../services/token.service';
-import { UserService } from '../../../services/user.service';
+import { TokenService } from '../../services/token.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { MessageService } from '../../../services/message.service';
+import { MessageService } from '../../services/message.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -38,8 +38,8 @@ export class SidebarComponent implements OnInit {
         ["Összegzés", "assets/images/icons/summary.svg", "admin/dashboard"],
         ["Termékek", "assets/images/icons/products.svg", "admin/products"],
         ["Felhasználók", "assets/images/icons/users.svg", "admin/users"],
-        ["Hirdetések", "assets/images/icons/news.svg"],
-        ["Üzenetek", "assets/images/icons/messages.svg", "admin/messages", 1]
+        ["Hirdetések", "assets/images/icons/news.svg", "admin/news"],
+        ["Üzenetek", "assets/images/icons/messages.svg", "admin/messages"]
     ]
 
     userLogout() {

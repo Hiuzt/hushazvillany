@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
-import { TokenService } from '../../../services/token.service';
+import { AuthService } from '../../services/auth.service';
+import { TokenService } from '../../services/token.service';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({

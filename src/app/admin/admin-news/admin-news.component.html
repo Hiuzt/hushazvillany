@@ -1,0 +1,260 @@
+<div class="relative w-full px-6 flex flex-col  mt-14 lg:mt-0">
+    <div class="grid xl:grid-cols-2 grid-cols-1 mt-4 xl:mt-0 items-center place-items-center">
+        <div class="w-full xl:mt-6 lg:pr-2 xl:mb-6  mt-2 mb-2">
+            <div class="flex items-center px-5 py-6 rounded-lg bg-black/20 border border-white/10">
+                <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+                    <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M19.728 10.686c-2.38 2.256-6.153 3.381-9.875 3.381-3.722 0-7.4-1.126-9.571-3.371L0 10.437V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7.6l-.272.286Z" />
+                        <path
+                            d="m.135 7.847 1.542 1.417c3.6 3.712 12.747 3.7 16.635.01L19.605 7.9A.98.98 0 0 1 20 7.652V6a2 2 0 0 0-2-2h-3V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H2a2 2 0 0 0-2 2v1.765c.047.024.092.051.135.082ZM10 10.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5ZM7 3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1H7V3Z" />
+                    </svg>
+                </div>
+                <div class="mx-5">
+                    <h4 class="lg:text-2xl text-lg font-[Akko] text-white">{{ newsList.length }}db </h4>
+                    <div class="text-white/60 text-sm lg:text-base">Összes hirdetés</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full lg:pl-2 xl:mt-6 xl:mb-6 mt-2 mb-2">
+            <div class="flex items-center px-5 py-6  rounded-lg bg-black/20 border border-white/10">
+                <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
+                    <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z" />
+                    </svg>
+                </div>
+                <div class="mx-5">
+                    <h4 class="lg:text-2xl text-lg font-[Akko] text-white"> {{ newsList[newsList.length - 1]?.title ||
+                        "Nem található hirdetés" }}</h4>
+                    <div class="text-white/60 text-sm lg:text-base">Utolsó hirdetés</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="grid grid-cols-1 items-center justify-between sm:flex">
+        <button (click)="currentModal = 2; clearInputs()"
+            class="bg-blue-600 text-xs xl:text-sm text-white py-2 px-7 mb-4 rounded-xl font-medium">
+            Hirdetés létrehozása
+        </button>
+
+    </div>
+
+    <div class="grid grid-cols-5 gap-4">
+        <div *ngFor="let newsValue of newsList" class="rounded-lg bg-black/20 group relative z-0">
+            <img class="aspect-video w-auto rounded-t-lg mx-auto" [src]="newsValue['image']" alt="" />
+            <div class="text-white font-[Akko] p-2">
+                {{ newsValue?.title }}
+            </div>
+
+            <div
+                class="group-hover:flex hidden gap-4 bg-black/50 backdrop-blur-sm absolute w-full h-full left-0 top-0 z-10 rounded-lg items-center justify-center">
+                <svg (click)="showPreview(newsValue['_id'])" class="cursor-pointer fill-white w-6 hover:fill-blue-500"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path
+                        d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
+                </svg>
+
+                <svg (click)="showEditNews(newsValue['_id'])"
+                    class="cursor-pointer fill-white hover:fill-yellow-500 w-6" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512">
+                    <path
+                        d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                </svg>
+                <svg (click)="showDelete(newsValue['_id'])" class="cursor-pointer fill-white w-6 hover:fill-red-500"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path
+                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div *ngIf="currentModal === 1" class=" w-full">
+        <div (click)="currentModal = 0;"
+            class="fixed left-0 top-0 outline-none h-full w-full z-[20000] bg-black/60 backdrop-blur-sm border-0 flex items-center justify-center overflow-y-auto py-2">
+            <div (click)="$event.stopPropagation()"
+                class="bg-[#1E1E1E] rounded-[20px] text-white font-[Akko] max-w-md w-full border border-white/10">
+
+                <div class="flex flex-col w-full mx-auto font-[Akko-light] text-white  relative">
+                    <img class="w-full rounded-t-[20px]" [src]="currentNew['image']" alt="" />
+                    <div class="px-4 pt-4 text-3xl font-[Akko]">{{ currentNew['title'] }}</div>
+                    <div class="p-4" [innerHTML]="replaceNewlinesWithBreaks(currentNew['text'])"></div>
+                    <div class="ml-auto mr-4 mb-2 text-white/40">
+                        {{ formatDate(currentNew['createdAt']) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD -->
+    <div *ngIf="currentModal === 2" class="relative w-full z-[1000]">
+        <div (click)="currentModal = 0;"
+            class="fixed left-0 top-0 outline-none w-full h-screen bg-black/60 backdrop-blur-sm border-0 flex py-2 items-center justify-center ">
+            <div (click)="($event.stopPropagation())"
+                class="bg-[#1E1E1E] text-white font-[Akko] max-h-screen overflow-scroll xl:overflow-auto  rounded-lg max-w-md w-full">
+                <div
+                    class="w-full h-4 flex items-center justify-between border-b border-white/10 py-6 px-6 rounded-t-lg">
+                    <span class="text-lg">Új hirdetés hozzáadása</span>
+                    <button (click)="currentModal = 0" type="button"
+                        class="text-white/80 outline-none bg-transparent hover:bg-black/10 hover:text-white rounded-lg text-sm w-8 h-8 flex justify-center items-center">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+                <form (ngSubmit)="addNewNews()" class="grid grid-cols-2 font-[Akko-light] my-4 gap-2">
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <label for="product-name">Hirdetés címe</label>
+                        <input [(ngModel)]="newsInput.title" name="product-name" type="text" id="product-name"
+                            placeholder="Hirdetés címe"
+                            class="focus:ring-1 focus:outline-none flex p-2 bg-black/30 border border-white/10 rounded-lg text-white focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <label>Hirdetés leírása</label>
+                        <textarea onkeydown="($event) => handleEnter" [(ngModel)]="newsInput.description"
+                            name="product-desc" rows="5" cols="50" maxlength="200"
+                            class=" resize-none focus:ring-1 focus:outline-none p-2 bg-black/30 border border-white/10 rounded-lg text-white focus:ring-blue-500 focus:border-blue-500">
+                        </textarea>
+                    </div>
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <label>Hirdetés képe</label>
+                        <input name="file" type="file" (change)="onFileUplaoded($event)" id="file" class="hidden" />
+                        <label for="file">
+                            <div
+                                class="aspect-square flex flex-col items-center justify-center focus:ring-1 focus:outline-none p-2 bg-black/30 border border-white/10 rounded-lg text-white focus:ring-blue-500 focus:border-blue-500">
+                                <div *ngIf="uploadedImage === null; else elseBlock">
+                                    <img class="m-8 opacity-60" src="/assets/images/image.png" alt="">
+                                    <span class="text-white/60">Nem található kép</span>
+                                </div>
+                                <ng-template #elseBlock>
+                                    <img class="aspect-square" [src]="uploadedImage" alt="">
+                                </ng-template>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <input class="bg-blue-600 col-span-2 p-2 text-white rounded-lg" value="Hirdetés hozzáadása"
+                            type="submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- DELETE -->
+    <div *ngIf="currentModal === 3" class=" w-full">
+        <div (click)="currentModal = 0"
+            class="fixed left-0 top-0 outline-none w-full h-screen bg-black/60 backdrop-blur-sm border-0 flex items-center justify-center overflow-hidden">
+            <div (click)="$event.stopPropagation()"
+                class="bg-[#1E1E1E] text-white font-[Akko] rounded-lg max-w-md w-full">
+                <div
+                    class="w-full h-4 flex items-center justify-between border-b border-white/10 py-6 px-6 rounded-t-lg">
+                    <span class="text-lg">Hirdetés törlése</span>
+                    <button (click)="currentModal = 0" type="button"
+                        class="text-white/80 outline-none bg-transparent hover:bg-black/10 hover:text-white rounded-lg text-sm w-8 h-8 flex justify-center items-center">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="font-[Akko-light]">Biztosan szeretnéd törölni ezt a hirdetést? (#{{ currentActionID
+                        }})
+                    </p>
+                    <div class="bg-black/20 p-6 mt-6 rounded-[20px] text-red-400">
+                        <span class="flex items-center font-[Akko]">
+                            <svg class="w-4 mr-2 fill-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path
+                                    d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+                            </svg>
+                            Figyelem!
+                        </span>
+                        <div class="font-[Akko-light] leading-4 mt-4">A hirdetés törlése után ez az akció már nem
+                            vonható
+                            vissza!</div>
+                    </div>
+                    <div class="flex justify-center gap-4 mt-4">
+                        <button (click)="currentModal = 0"
+                            class="bg-black/10 border border-white/10 p-2 text-white font-[Akko-light] text-sm rounded-lg hover:bg-white/20 transition duration-150">Nem
+                            szeretném törölni</button>
+                        <button (click)="deleteNew()"
+                            class="bg-red-500 p-2 text-white font-[Akko-light] text-sm rounded-lg hover:bg-red-600 transition duration-150">Igen,
+                            törölni szeretném</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- EDIT -->
+    <div *ngIf="currentModal === 4" class="relative w-full z-[1000]">
+        <div (click)="currentModal = 0;"
+            class="fixed left-0 top-0 outline-none w-full h-screen bg-black/60 backdrop-blur-sm border-0 flex py-2 items-center justify-center ">
+            <div (click)="($event.stopPropagation())"
+                class="bg-[#1E1E1E] text-white font-[Akko] max-h-screen overflow-scroll xl:overflow-auto  rounded-lg max-w-md w-full">
+                <div
+                    class="w-full h-4 flex items-center justify-between border-b border-white/10 py-6 px-6 rounded-t-lg">
+                    <span class="text-lg">Hirdetés szerkesztése</span>
+                    <button (click)="currentModal = 0" type="button"
+                        class="text-white/80 outline-none bg-transparent hover:bg-black/10 hover:text-white rounded-lg text-sm w-8 h-8 flex justify-center items-center">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+                <form (ngSubmit)="editNews()" class="grid grid-cols-2 font-[Akko-light] my-4 gap-2">
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <label for="product-name">Hirdetés címe</label>
+                        <input [(ngModel)]="newsInput.title" name="product-name" type="text" id="product-name"
+                            placeholder="Hirdetés címe"
+                            class="focus:ring-1 focus:outline-none flex p-2 bg-black/30 border border-white/10 rounded-lg text-white focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <label>Hirdetés leírása</label>
+                        <textarea onkeydown="($event) => handleEnter" [(ngModel)]="newsInput.description"
+                            name="product-desc" rows="5" cols="50" maxlength="200"
+                            class=" resize-none focus:ring-1 focus:outline-none p-2 bg-black/30 border border-white/10 rounded-lg text-white focus:ring-blue-500 focus:border-blue-500">
+                        </textarea>
+                    </div>
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <label>Hirdetés képe (Ha nem akarod változtatni, hagyd így!)</label>
+                        <input name="file" type="file" (change)="onFileUplaoded($event)" id="file" class="hidden" />
+                        <label for="file">
+                            <div
+                                class="aspect-square flex flex-col items-center justify-center focus:ring-1 focus:outline-none p-2 bg-black/30 border border-white/10 rounded-lg text-white focus:ring-blue-500 focus:border-blue-500">
+                                <div *ngIf="uploadedImage === null; else elseBlock">
+                                    <img class="m-8 opacity-60" src="/assets/images/image.png" alt="">
+                                    <span class="text-white/60">Nem található kép</span>
+                                </div>
+                                <ng-template #elseBlock>
+                                    <img class="aspect-square" [src]="uploadedImage" alt="">
+                                </ng-template>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex flex-col justify-center px-6 col-span-2">
+                        <input class="bg-blue-600 col-span-2 p-2 text-white rounded-lg" value="Hirdetés szerkesztése"
+                            type="submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

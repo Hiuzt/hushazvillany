@@ -9,7 +9,10 @@ export class TokenService {
     jwtToken: any;
     decodedToken!: { [key: string]: string };
     constructor() {
-        this.jwtToken = localStorage.getItem("token");
+        if (typeof localStorage !== undefined) {
+            this.jwtToken = localStorage.getItem("token");
+        }
+            
     }
 
     storeToken(tokenValue: string) {

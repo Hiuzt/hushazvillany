@@ -11,6 +11,7 @@ export class ProductService {
     constructor(private http: HttpClient) { }
 
     getAllProducts(): Observable<any> {
+        console.log(environment.apiUrl)
         return this.http.get<any>(`${environment.apiUrl}/product`, { withCredentials: true });
     }
 
@@ -19,10 +20,10 @@ export class ProductService {
     }
 
     deleteProduct(productID: string): Observable<any> {
-        return this.http.delete<any>(`${environment.apiUrl}/Product/${productID}`, {withCredentials: true})
+        return this.http.delete<any>(`${environment.apiUrl}/product/${productID}`, {withCredentials: true})
     }
 
     updateProduct(productID: string, productForm: any): Observable<any> {
-        return this.http.put<any>(`${environment.apiUrl}/Product/${productID}`, productForm, {withCredentials: true})
+        return this.http.put<any>(`${environment.apiUrl}/product/${productID}`, productForm, {withCredentials: true})
     }
 }

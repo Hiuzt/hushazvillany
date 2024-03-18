@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { ProductService } from '../../../services/product.service';
+import { ProductService } from '../../services/product.service';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({
@@ -15,8 +15,8 @@ export class AdminProductsComponent implements OnInit {
     showAddDialog: boolean = false;
     showEditDialog: boolean = false;
 
-    @Input() currentPage: any = 1;
-    @Input() pagesList: any;
+    currentPage: any = 1;
+    pagesList: any;
     uploadedImage: any = null;
     currentActionIndex: string = "";
     currentCategory: string = "all";
@@ -147,8 +147,7 @@ export class AdminProductsComponent implements OnInit {
             "productDescription": "",
             "productImage": "",
             "productCategory": "",
-        }
-        
+        }      
     }
 
     onFileUplaoded(event: any) {
@@ -190,7 +189,7 @@ export class AdminProductsComponent implements OnInit {
     }
 
     getNextPage(currentPage: number) {
-        return Math.min(currentPage + 1, this.filteredList.length)
+        return Math.min(currentPage + 1, Math.floor(this.filteredList.length/this.itemsPerPage))
     }
 
     getCategory(categoryValue: any) {

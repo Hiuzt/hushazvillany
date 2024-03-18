@@ -12,18 +12,19 @@ import { CommonModule } from '@angular/common';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { AboutComponent } from './pages/about/about.component';
-import { LoginComponent } from './pages/admin/login/login.component';
+import { LoginComponent } from './admin/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { tokenInterceptor } from './interceptors/token.interceptor';
 import { CountUpModule } from 'ngx-countup';
 import { NgxApexchartsModule } from 'ngx-apexcharts';
-import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
-import { AdminProductsComponent } from './pages/admin/admin-products/admin-products.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { NgToastModule } from 'ng-angular-popup';
-import { UsersComponent } from './pages/admin/users/users.component';
+import { UsersComponent } from './admin/users/users.component';
 import { NewsComponent } from './pages/news/news.component';
-import { AdminMessagesComponent } from './pages/admin/admin-messages/admin-messages.component';
+import { AdminMessagesComponent } from './admin/admin-messages/admin-messages.component';
+import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { AdminMessagesComponent } from './pages/admin/admin-messages/admin-messa
         AdminProductsComponent,
         UsersComponent,
         NewsComponent,
-        AdminMessagesComponent
+        AdminMessagesComponent,
+        AdminNewsComponent,
         
     ],
     imports: [
@@ -53,9 +55,9 @@ import { AdminMessagesComponent } from './pages/admin/admin-messages/admin-messa
         FormsModule,
         CountUpModule,
         NgxApexchartsModule,
-        NgToastModule,
-       
+        NgToastModule
     ],
+
     providers: [
         provideClientHydration(),
         provideHttpClient(

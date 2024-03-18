@@ -5,14 +5,15 @@ import { HeaderComponent } from './pages/layout/header/header.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { AboutComponent } from './pages/about/about.component';
-import { LoginComponent } from './pages/admin/login/login.component';
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { LoginComponent } from './admin/login/login.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
-import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
-import { AdminProductsComponent } from './pages/admin/admin-products/admin-products.component';
-import { UsersComponent } from './pages/admin/users/users.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { UsersComponent } from './admin/users/users.component';
 import { NewsComponent } from './pages/news/news.component';
-import { AdminMessagesComponent } from './pages/admin/admin-messages/admin-messages.component';
+import { AdminMessagesComponent } from './admin/admin-messages/admin-messages.component';
+import { AdminNewsComponent } from './admin/admin-news/admin-news.component';
 
 const routes: Routes = [
     {path: "", component: HeaderComponent, children: [
@@ -28,8 +29,8 @@ const routes: Routes = [
         {path: "admin/products", component: AdminProductsComponent, canActivate:[authGuard]},
         {path: "admin/users", component: UsersComponent, canActivate:[authGuard]},
         {path: "admin/messages", component: AdminMessagesComponent, canActivate:[authGuard]},
-    ]}
-        
+        {path: "admin/news", component: AdminNewsComponent, canActivate:[authGuard]},
+    ]}      
 ];
 
 @NgModule({
